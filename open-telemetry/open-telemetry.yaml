@@ -1,7 +1,9 @@
+---
 apiVersion: v1
 kind: Namespace
 metadata:
   name: open-telemetry
+
 ---
 apiVersion: v1
 kind: ConfigMap
@@ -51,6 +53,7 @@ data:
           receivers: [otlp]
           processors: [k8sattributes, resource, memory_limiter, batch]
           exporters: [otlphttp]
+
 ---
 apiVersion: apps/v1
 kind: DaemonSet
@@ -107,6 +110,7 @@ spec:
               - key: otel-agent-config
                 path: otel-agent-config.yaml
           name: otel-agent-config-vol
+
 ---
 apiVersion: v1
 kind: Service
@@ -117,6 +121,7 @@ metadata:
     app: opentelemetry
     component: otel-agent
 spec:
+  internalTrafficPolicy: Local
   ports:
   - name: otlp-grpc # Default endpoint for OpenTelemetry gRPC receiver.
     port: 4317
@@ -130,12 +135,14 @@ spec:
     port: 8888
   selector:
     component: otel-agent
+
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: opentelemetry-collector
   namespace: open-telemetry
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -145,6 +152,7 @@ rules:
 - apiGroups: [""]
   resources: ["pods"]
   verbs: ["watch", "list"]
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
