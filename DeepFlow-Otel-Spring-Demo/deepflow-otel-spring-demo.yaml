@@ -1114,5 +1114,5 @@ spec:
             service:
               name: web-shop
               port:
-                number: 80
+                number: 8090
 
