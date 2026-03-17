@@ -39,6 +39,8 @@ spec:
     metadata:
       labels:
         app: adservice
+      #annotations:
+        #instrumentation.opentelemetry.io/inject-java: "true"
     spec:
       affinity:
         podAntiAffinity:
@@ -62,11 +64,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: service.name=adservice
             - name: PORT
@@ -93,6 +90,9 @@ spec:
     metadata:
       labels:
         app: cartservice
+      #annotations:
+        #instrumentation.opentelemetry.io/inject-dotnet: "true"
+        #instrumentation.opentelemetry.io/otel-dotnet-auto-runtime: "linux-x64"
     spec:
       affinity:
         podAntiAffinity:
@@ -116,11 +116,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: service.name=cartservice
             - name: REDIS_ADDR
@@ -170,11 +165,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: CART_SERVICE_ADDR
               value: cartservice:7070
             - name: CURRENCY_SERVICE_ADDR
@@ -236,11 +226,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: service.name=currencyservice
             - name: PORT
@@ -290,11 +275,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: OTEL_PYTHON_LOG_CORRELATION
               value: "true"
             - name: OTEL_RESOURCE_ATTRIBUTES
@@ -346,11 +326,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: AD_SERVICE_ADDR
               value: adservice:9555
             - name: CART_SERVICE_ADDR
@@ -414,11 +389,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: FRONTEND_ADDR
               value: frontend:8080
             - name: OTEL_RESOURCE_ATTRIBUTES
@@ -522,11 +492,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: service.name=productcatalogservice
             - name: PRODUCT_CATALOG_SERVICE_PORT
@@ -553,6 +518,8 @@ spec:
     metadata:
       labels:
         app: recommendationservice
+      #annotations:
+        #instrumentation.opentelemetry.io/inject-python: "true"
     spec:
       affinity:
         podAntiAffinity:
@@ -576,11 +543,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: OTEL_PYTHON_LOG_CORRELATION
               value: "true"
             - name: OTEL_RESOURCE_ATTRIBUTES
@@ -634,11 +596,6 @@ spec:
               topologyKey: "kubernetes.io/hostname"
       containers:
         - env:
-            - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-              valueFrom:
-                configMapKeyRef:
-                  name: otel-endpoint-config
-                  key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             - name: OTEL_RESOURCE_ATTRIBUTES
               value: service.name=shippingservice
             - name: PORT
